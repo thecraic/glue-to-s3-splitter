@@ -8,6 +8,8 @@ There are several ways to approach this problem, and parallelizing execution see
 
 To achieve a reasonable run time with a data set of 1M records, it is necessary to approach 10,000 files per minute.
 
+![Overview ](/images/glue-to-s3-splitter_drawio_-_draw_io_app.png)
+
 Testing showed the most effective way to upload a large number of small files to S3 is to bulk copy them with the command line tool. 
 
 This AWS Glue job reads the source table into dynamic frames in tranches, writes the tranche to local disk and bulk copies them to S3. This is done sequentially.
